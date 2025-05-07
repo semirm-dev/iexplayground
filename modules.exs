@@ -42,7 +42,7 @@ defmodule MyApp do
 
   defmodule User do
     @enforce_keys [:name, :age]
-    defstruct name: "John", age: 27
+    defstruct name: "John", age: 25
   end
 
   def hello do
@@ -50,7 +50,7 @@ defmodule MyApp do
   end
 
   def usr do
-    user = %User{name: "John", age: 27}
+    user = %User{name: "John", age: 25}
     IO.inspect(user)
   end
 end
