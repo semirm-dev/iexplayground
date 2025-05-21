@@ -41,6 +41,8 @@ defmodule MyApp do
   @svc_name "MyApp"
 
   defmodule User do
+    # structs are extensions of maps
+    # structs take the name of the module they're defined in
     @enforce_keys [:name, :age]
     defstruct name: "John", age: 25
   end
@@ -50,6 +52,7 @@ defmodule MyApp do
   end
 
   def usr do
+    # struct name is the module name
     user = %User{name: "John", age: 25}
     IO.inspect(user)
   end
