@@ -7,7 +7,7 @@
 
 # Doing extra work (e.g., string building, list prepending, callback invocation) after the recursive call.
 # Combining multiple recursive results (e.g., fib(n-1) + fib(n-2)) — creates work after recursion.
-# Building a result after recursion instead of accumulating it during recursion.
+# Building a result after recursion instead of accumulating it during recursion..
 
 defmodule Recursion do
   def sum_to(0), do: 0
