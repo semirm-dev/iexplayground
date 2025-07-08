@@ -3,7 +3,7 @@
 # Early returns (inside if, case, cond) are okay — as long as in recursion branches, recursion is last.
 # Passing parameters (even functions) into recursion is fine — ✔️ safe.
 # Using or modifying recursion result after it returns breaks tail recursion — ❌ unsafe.
-# Invoke callbacks before recursion, not after, if you need to.
+# Invoke callbacks before recursion, not after, if you need to..
 
 # Doing extra work (e.g., string building, list prepending, callback invocation) after the recursive call.
 # Combining multiple recursive results (e.g., fib(n-1) + fib(n-2)) — creates work after recursion.
