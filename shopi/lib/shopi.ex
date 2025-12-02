@@ -26,10 +26,16 @@ defmodule Shopi do
   end
 
   def create_bucket(name) do
+    # Reads as:
+    # “Dynamic supervisor Shopi.Bucket, please start a new Shopi.Bucket GenServer,
+    # passing it the option name: via(name) so it registers itself in the Registry.”
+
     DynamicSupervisor.start_child(
       # the dynamic supervisor started under Shopi application
+      # which supervisor starts the child
       Shopi.Bucket,
       # the bucket process to be started, which implements start_link/1 (bucket.ex)
+      # which module to start and what args to pass
       {Shopi.Bucket, name: via(name)}
     )
   end
