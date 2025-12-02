@@ -1,6 +1,10 @@
 defmodule Shopi.Bucket do
   use Agent
 
+  # Agents are used to encapsulate state, they are a simple abstraction around a process that
+  # holds state and allows safe access and modification of that state from other processes.
+
+  # required by Agent, so that it can start the process and be linked to the caller (supervisor)
   def start_link(opts) do
     Agent.start_link(fn -> %{} end, opts)
   end
