@@ -1,4 +1,5 @@
 defmodule Shopi do
+  alias Shopi.Bucket
   use Application
 
   def start(_type, _args) do

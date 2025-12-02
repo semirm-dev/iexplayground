@@ -1,4 +1,4 @@
-defmodule Bucket do
+defmodule Shopi.Bucket do
   use Agent
 
   def start_link(opts) do
