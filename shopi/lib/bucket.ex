@@ -1,4 +1,4 @@
-defmodule Agent.Bucket do
+defmodule Bucket do
   use Agent
 
   def start_link(opts) do

@@ -4,6 +4,8 @@ string = "Hello, World!" <> " woow => #{1 + 1}"
 boolean = 1 == 1 and 2 == 2
 boolean2 = 1 == 1.0
 boolean3 = 1 == 1.1
+
+# atoms are not garbage collected, use with caution (never from user input)
 atom = :hello
 
 IO.puts(integer)

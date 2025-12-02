@@ -1,42 +1,28 @@
 defmodule Shopi do
-  @moduledoc """
-  Documentation for `Shopi`.
-  """
+  use Application
 
-  @doc """
-  Hello world.
+  def start(_type, _args) do
+    children = [
+      {Registry, name: Shopi, keys: :unique}
+    ]
 
-  ## Examples
-
-      iex> Shopi.hello()
-      :world
-
-  """
-  def hello do
-    :world
+    Supervisor.start_link(children, strategy: :one_for_one)
   end
 
-  def greet() do
-    {:ok, agent} = Agent.start_link(fn -> ["hi"] end)
-    IO.puts("Agent started with PID: #{inspect(agent)}")
+  def bucket do
+    name = {:via, Registry, {Shopi, "shopping"}}
+    Bucket.start_link(name: name)
 
-    Agent.update(agent, fn state ->
-      new_state = ["Hello, Shopi!" | state]
-      IO.puts("State updated to: #{inspect(new_state)}")
-      new_state
-    end)
+    Bucket.put(name, "milk", 3)
+    Bucket.put(name, "eggs", 6)
+    m = Bucket.get(name, "milk")
+    e = Bucket.get(name, "eggs")
+    IO.puts("Before Milk: #{inspect(m)}, Eggs: #{inspect(e)}")
 
-    Agent.get(agent, fn state ->
-      IO.puts("Current state: #{inspect(state)}")
-      state
-    end)
+    Bucket.delete(name, "milk")
 
-    Agent.stop(agent)
-    IO.puts("Agent stopped.")
-
-    # attempting to get state after stopping the agent will result in an error
-    # Agent.get(agent, fn state ->
-    #   state
-    # end)
+    m = Bucket.get(name, "milk")
+    e = Bucket.get(name, "eggs")
+    IO.puts("After Milk: #{inspect(m)}, Eggs: #{inspect(e)}")
   end
 end
